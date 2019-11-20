@@ -14,7 +14,7 @@ resource "aws_instance" "ec2" {
     volume_size           = "${var.root_vol_size}"
     delete_on_termination = "${var.root_vol_delete_on_termination}"
   }
-  tags {
+  tags = {
     Name      = "${var.Team}-${var.App}-${var.Service}-${var.Environment}"
     Team      = "${var.Team}"
     Environment       = "${var.Environment}"
