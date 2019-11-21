@@ -60,7 +60,7 @@ node('master') {
   stage('Terraform Apply') { 
     dir(terraform/modules/ec2) {
       sh ' terraform apply -auto-approve tfplan.txt ' 
-      sh ‘echo "`terraform output`" | mail -s "${Env^} EC2 created by ${BUILD_USER} for ${Team} Team in ${region} region" -r email@company-domain.com email@company-domain.com’
+      //sh ‘echo "`terraform output`" | mail -s "${Env^} EC2 created by ${BUILD_USER} for ${Team} Team in ${region} region" -r email@company-domain.com email@company-domain.com’
     }
   }
 
