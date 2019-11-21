@@ -9,7 +9,7 @@ def App = "${params.App}"
 def instance_type ="${params.instance_type}"
 def key_pair = "${params.key_pair}"
 def ami_name = "${params.ami_name}"
-def subnet = "${param.subnet}"
+def subnet = "${params.subnet}"
 def root_vol_size = "${params.root_vol_size}"
 def root_vol_delete_on_termination = "${params.root_vol_delete_on_termination}"
 
