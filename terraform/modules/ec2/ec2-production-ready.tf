@@ -15,7 +15,7 @@ resource "aws_instance" "Master-Node" {
     delete_on_termination = "${var.root_vol_delete_on_termination}"
   }
   tags = {
-    Name      = "${var.Team}-${var.App}-${var.Service}-${var.Environment}"
+    Name      = "Master Node"
     Team      = "${var.Team}"
     Environment       = "${var.Environment}"
     Service   = "${var.Service}"
@@ -61,7 +61,7 @@ resource "aws_instance" "Worker-Node" {
     delete_on_termination = "${var.root_vol_delete_on_termination}"
   }
   tags = {
-    Name      = "${var.Team}-${var.App}-${var.Service}-${var.Environment}"
+    Name      = "Worker Node"
     Team      = "${var.Team}"
     Environment       = "${var.Environment}"
     Service   = "${var.Service}"
