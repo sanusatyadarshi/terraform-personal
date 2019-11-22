@@ -8,7 +8,7 @@ resource "aws_instance" "ec2" {
   iam_instance_profile        = "${aws_iam_instance_profile.ec2-profile.id}"
   user_data                   = "${data.template_file.user_data.rendered}"
   associate_public_ip_address = "${var.associate_public_ip_address}"
-  count                       = "${var.count}"
+  count                       = "${var.count}+1"
   root_block_device {
     volume_type           = "${var.root_vol_type}"
     volume_size           = "${var.root_vol_size}"
