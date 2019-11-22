@@ -67,11 +67,22 @@ node('master') {
   stage('Input from Terraform Resources') {
     dir("k8s-ansible") {
       sh 'cp ../terraform/modules/ec2/ip_address.txt ip_address.txt '
+
       // NOW I want to take the ip addresses of ec2 instances created by terraform from ip_address.txt
       // and replace the placeholders MASTER_NODE_IP_ADDRESS, WORKER1_NODE_IP_ADDRESS, WORKER2_NODE_IP_ADDRESS in the hosts file
       // with the ip addresses from the ip_address.txt file.  I need to do sed in order for this to work
+      sh """ master=$(sed -n 1p ip_address.txt)
+      echo IP address of Master Node is "$master"
+      sed -i "s/MASTER_NODE_IP_ADDRESS/${master}/g" hosts
 
+      worker1=$(sed -n 2p ip_address.txt)
+      echo IP address of Worker-1 Node is "$worker1"
+      sed -i "s/WORKER1_NODE_IP_ADDRESS/${worker1}/g" hosts
 
+      worker2=$(sed -n 3p ip_address.txt)
+      echo IP address of Worker-2 Node is "$worker2"
+      sed -i "s/WORKER2_NODE_IP_ADDRESS/${worker2}/g" hosts
+      """
     }
   }
 
