@@ -58,7 +58,7 @@ node('master') {
   }
 
   stage('Terraform Apply') { 
-    dir(terraform/modules/ec2) {
+    dir("terraform/modules/ec2") {
       sh ' terraform apply -auto-approve tfplan.txt ' 
       //sh ‘echo "`terraform output`" | mail -s "${Env^} EC2 created by ${BUILD_USER} for ${Team} Team in ${region} region" -r email@company-domain.com email@company-domain.com’
     }
@@ -95,6 +95,15 @@ node('master') {
     }
   }
 
+  stage('Cleanup') {
+    dir("k8s-ansible") {
+      sh 'rm ip_address.txt'
+      sh 'rm hosts'
+    }
+    dir("terraform/modules/ec2") {
+      sh 'rm ip_address.txt'
+    }
+  }
 }
 
 
