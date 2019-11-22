@@ -88,10 +88,10 @@ node('master') {
 
   stage('Create K8s Cluster') {
     dir("k8s-ansible") {
-        sh 'ansible-playbook -i hosts ~/non-root-user.yml'
-        sh 'ansible-playbook -i hosts ~/kube-dependencies.yml'
-        sh 'ansible-playbook -i hosts ~/master-cluster.yml'
-        sh 'ansible-playbook -i hosts ~/workers-cluster.yml'
+        sh 'ansible-playbook -i hosts non-root-user.yml'
+        sh 'ansible-playbook -i hosts kube-dependencies.yml'
+        sh 'ansible-playbook -i hosts master-cluster.yml'
+        sh 'ansible-playbook -i hosts workers-cluster.yml'
     }
   }
 
