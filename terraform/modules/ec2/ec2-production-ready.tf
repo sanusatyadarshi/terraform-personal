@@ -39,7 +39,7 @@ resource "aws_instance" "Master-Node" {
     ]
   }
   provisioner "local-exec" {
-    command = "echo ${aws_instance.example.public_ip} >> ip_address.txt"
+    command = "echo ${aws_instance.Master-Node.public_ip} >> ip_address.txt"
   }
 }
 }
@@ -85,7 +85,7 @@ resource "aws_instance" "Worker-Node" {
     ]
   }
   provisioner "local-exec" {
-    command = "echo ${aws_instance.example.public_ip} >> ip_address.txt"
+    command = "echo ${aws_instance.Worker-Node.public_ip} >> ip_address.txt"
   }
 }
 
